@@ -5,9 +5,11 @@ const nextConfig: NextConfig = {
   /* config options here */
   reactCompiler: true,
   experimental: {
+    typedEnv: true,
     turbopackFileSystemCacheForDev: true,
     turbopackFileSystemCacheForBuild: true
-  }
+  },
+  reactStrictMode: true
 };
 
 export default withPayload(nextConfig, {devBundleServerPackages: false});

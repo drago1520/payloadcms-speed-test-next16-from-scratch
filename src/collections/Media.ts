@@ -12,5 +12,8 @@ export const Media: CollectionConfig = {
       required: true,
     },
   ],
-  upload: true,
+  upload: {
+    focalPoint: true,
+    disableLocalStorage: true,
+  },
 }

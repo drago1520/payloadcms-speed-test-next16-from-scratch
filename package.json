@@ -3,21 +3,30 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "npm run services && next dev",
     "build": "next build",
     "start": "next start",
+    "gen": "bun types && bun importmap",
+    "types": "bun tsx ./node_modules/payload/bin.js generate:types",
+    "importmap": "dotenv -e .env -- bun payload generate:importmap",
+    "services": "docker compose up -d",
     "lint": "eslint"
   },
   "dependencies": {
     "@payloadcms/db-mongodb": "^3.62.0",
+    "@payloadcms/email-nodemailer": "^3.62.0",
     "@payloadcms/next": "^3.62.0",
     "@payloadcms/richtext-lexical": "^3.62.0",
+    "cross-env": "^10.1.0",
+    "dotenv": "^17.2.3",
+    "dotenv-cli": "^11.0.0",
     "graphql": "^16.12.0",
     "next": "16.0.2-canary.3",
     "payload": "^3.62.0",
     "react": "19.2.0",
     "react-dom": "19.2.0",
-    "sharp": "^0.34.4"
+    "sharp": "^0.34.4",
+    "ts-node": "^10.9.2"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
@@ -28,6 +37,12 @@
     "eslint": "^9",
     "eslint-config-next": "16.0.2-canary.3",
     "tailwindcss": "^4",
+    "tsx": "^4.20.6",
     "typescript": "^5"
-  }
+  },
+  "trustedDependencies": [
+    "esbuild",
+    "sharp",
+    "unrs-resolver"
+  ]
 }

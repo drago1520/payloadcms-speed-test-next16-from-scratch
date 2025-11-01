@@ -69,6 +69,19 @@ export interface Config {
   collections: {
     users: User;
     media: Media;
+    attendees: Attendee;
+    events: Event;
+    'marketing-sections': MarketingSection;
+    partners: Partner;
+    partners2: Partners2;
+    tickets: Ticket;
+    gallery7: Gallery7;
+    testimonial25: Testimonial25;
+    statisticsN: StatisticsN;
+    faqLeftRight: FaqLeftRight;
+    lecturersN: LecturersN;
+    agendaN: AgendaN;
+    'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -77,6 +90,19 @@ export interface Config {
   collectionsSelect: {
     users: UsersSelect<false> | UsersSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
+    attendees: AttendeesSelect<false> | AttendeesSelect<true>;
+    events: EventsSelect<false> | EventsSelect<true>;
+    'marketing-sections': MarketingSectionsSelect<false> | MarketingSectionsSelect<true>;
+    partners: PartnersSelect<false> | PartnersSelect<true>;
+    partners2: Partners2Select<false> | Partners2Select<true>;
+    tickets: TicketsSelect<false> | TicketsSelect<true>;
+    gallery7: Gallery7Select<false> | Gallery7Select<true>;
+    testimonial25: Testimonial25Select<false> | Testimonial25Select<true>;
+    statisticsN: StatisticsNSelect<false> | StatisticsNSelect<true>;
+    faqLeftRight: FaqLeftRightSelect<false> | FaqLeftRightSelect<true>;
+    lecturersN: LecturersNSelect<false> | LecturersNSelect<true>;
+    agendaN: AgendaNSelect<false> | AgendaNSelect<true>;
+    'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
@@ -158,6 +184,364 @@ export interface Media {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "attendees".
+ */
+export interface Attendee {
+  id: string;
+  email?: string | null;
+  name?: string | null;
+  phone?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "events".
+ */
+export interface Event {
+  id: string;
+  title: string;
+  description: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  /**
+   * Най-много 1-2 параграфа НЕ повече
+   */
+  shortDescription?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  /**
+   * Stripe Dashboard > Search (top center) > Payment Links > + New; Сложете redirect към сайта. Може с имейл, телефон или комбинация.
+   */
+  stripeUrl?: string | null;
+  type: 'networking' | 'businessBreakfast' | 'conference' | 'courses';
+  date: string;
+  active: 'false' | 'true';
+  /**
+   * 2 имена на лектора
+   */
+  speakerName: string;
+  /**
+   * поражда Недостиг у хората.
+   */
+  maxGuests?: string | null;
+  /**
+   * Препоръчително 1920x1005px (Facebook event banner).
+   */
+  thumbnail: string | Media;
+  /**
+   * Важно: Провери дали излиза в Google maps като пръв резултат.
+   */
+  location?: string | null;
+  /**
+   * По подразбиране е Gravity Ruin Bar. Може да генерирате url от Google maps > потърси мястото > Бутон "Share".
+   */
+  locationUrl?: string | null;
+  /**
+   * Gravity bar по подразбиране
+   */
+  locationImg?: (string | null) | Media;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "marketing-sections".
+ */
+export interface MarketingSection {
+  id: string;
+  Partners: {
+    partners: PartnersProps[];
+  };
+  Partners2: {
+    partners2: Partners2Props[];
+  };
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "PartnersProps".
+ */
+export interface PartnersProps {
+  images: (string | Media)[];
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'partners';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Partners2Props".
+ */
+export interface Partners2Props {
+  subtitle?: string | null;
+  images: (string | Media)[];
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'partners2';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "partners".
+ */
+export interface Partner {
+  id: string;
+  partners: PartnersProps[];
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "partners2".
+ */
+export interface Partners2 {
+  id: string;
+  /**
+   * Така ще се показва раздела, когато го избирате от някоя страница. Да НЕ се трие, и препоръчително да не се пипа.
+   */
+  label: string;
+  subtitle?: string | null;
+  images: (string | Media)[];
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "tickets".
+ */
+export interface Ticket {
+  id: string;
+  attendee: string | Attendee;
+  /**
+   * Трябва да има създадено събитие. /admin > Events > "add new"
+   */
+  event: string | Event;
+  source: 'stripe' | 'manually';
+  paymentIntentId?: string | null;
+  createdAt: string;
+  updatedAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "gallery7".
+ */
+export interface Gallery7 {
+  id: string;
+  label: string;
+  title: string;
+  images: (string | Media)[];
+  descr?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  ctaText?: string | null;
+  ctaHref?: string | null;
+  rotateSpeed?: number | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "testimonial25".
+ */
+export interface Testimonial25 {
+  id: string;
+  label: string;
+  title: string;
+  helperText?: string | null;
+  ctaText?: string | null;
+  ctaHref?: string | null;
+  /**
+   * Добавете отделните карти за препоръки. При нужда копирайте вече съществуващи записи.
+   */
+  cards: Testimonial25CardProps[];
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Testimonial25CardProps".
+ */
+export interface Testimonial25CardProps {
+  image: string | Media;
+  quote: string;
+  author: string;
+  role: string;
+  company: string;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'testimonial25CardBlock';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "statisticsN".
+ */
+export interface StatisticsN {
+  id: string;
+  label: string;
+  /**
+   * Показва се над трите статистики
+   */
+  title?: string | null;
+  statisticsData: {
+    /**
+     * Трябва поне да е 1:1. 48x48 px ще се рендерира.
+     */
+    icon?: (string | null) | Media;
+    value: number;
+    /**
+     * Показва се точно до числото, а НЕ на нов ред като описанието.
+     */
+    suffix?: string | null;
+    description: string;
+    id?: string | null;
+    blockName?: string | null;
+    blockType: 'statistic';
+  }[];
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "faqLeftRight".
+ */
+export interface FaqLeftRight {
+  id: string;
+  title: string;
+  label: string;
+  helperText: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  QABlock: QABlockProps[];
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "QABlockProps".
+ */
+export interface QABlockProps {
+  question: string;
+  answer: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'qABlock';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "lecturersN".
+ */
+export interface LecturersN {
+  id: string;
+  title: string;
+  label: string;
+  subheading?: string | null;
+  lecturers: {
+    name?: string | null;
+    role?: string | null;
+    bio?: string | null;
+    image: string | Media;
+    id?: string | null;
+  }[];
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "agendaN".
+ */
+export interface AgendaN {
+  id: string;
+  title?: string | null;
+  label: string;
+  items: {
+    title: string;
+    description?: string | null;
+    id?: string | null;
+  }[];
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "payload-kv".
+ */
+export interface PayloadKv {
+  id: string;
+  key: string;
+  data:
+    | {
+        [k: string]: unknown;
+      }
+    | unknown[]
+    | string
+    | number
+    | boolean
+    | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-locked-documents".
  */
 export interface PayloadLockedDocument {
@@ -170,6 +554,58 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'media';
         value: string | Media;
+      } | null)
+    | ({
+        relationTo: 'attendees';
+        value: string | Attendee;
+      } | null)
+    | ({
+        relationTo: 'events';
+        value: string | Event;
+      } | null)
+    | ({
+        relationTo: 'marketing-sections';
+        value: string | MarketingSection;
+      } | null)
+    | ({
+        relationTo: 'partners';
+        value: string | Partner;
+      } | null)
+    | ({
+        relationTo: 'partners2';
+        value: string | Partners2;
+      } | null)
+    | ({
+        relationTo: 'tickets';
+        value: string | Ticket;
+      } | null)
+    | ({
+        relationTo: 'gallery7';
+        value: string | Gallery7;
+      } | null)
+    | ({
+        relationTo: 'testimonial25';
+        value: string | Testimonial25;
+      } | null)
+    | ({
+        relationTo: 'statisticsN';
+        value: string | StatisticsN;
+      } | null)
+    | ({
+        relationTo: 'faqLeftRight';
+        value: string | FaqLeftRight;
+      } | null)
+    | ({
+        relationTo: 'lecturersN';
+        value: string | LecturersN;
+      } | null)
+    | ({
+        relationTo: 'agendaN';
+        value: string | AgendaN;
+      } | null)
+    | ({
+        relationTo: 'payload-kv';
+        value: string | PayloadKv;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -252,6 +688,260 @@ export interface MediaSelect<T extends boolean = true> {
   height?: T;
   focalX?: T;
   focalY?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "attendees_select".
+ */
+export interface AttendeesSelect<T extends boolean = true> {
+  email?: T;
+  name?: T;
+  phone?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "events_select".
+ */
+export interface EventsSelect<T extends boolean = true> {
+  title?: T;
+  description?: T;
+  shortDescription?: T;
+  stripeUrl?: T;
+  type?: T;
+  date?: T;
+  active?: T;
+  speakerName?: T;
+  maxGuests?: T;
+  thumbnail?: T;
+  location?: T;
+  locationUrl?: T;
+  locationImg?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "marketing-sections_select".
+ */
+export interface MarketingSectionsSelect<T extends boolean = true> {
+  Partners?:
+    | T
+    | {
+        partners?:
+          | T
+          | {
+              partners?: T | PartnersPropsSelect<T>;
+            };
+      };
+  Partners2?:
+    | T
+    | {
+        partners2?:
+          | T
+          | {
+              partners2?: T | Partners2PropsSelect<T>;
+            };
+      };
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "PartnersProps_select".
+ */
+export interface PartnersPropsSelect<T extends boolean = true> {
+  images?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Partners2Props_select".
+ */
+export interface Partners2PropsSelect<T extends boolean = true> {
+  subtitle?: T;
+  images?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "partners_select".
+ */
+export interface PartnersSelect<T extends boolean = true> {
+  partners?:
+    | T
+    | {
+        partners?: T | PartnersPropsSelect<T>;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "partners2_select".
+ */
+export interface Partners2Select<T extends boolean = true> {
+  label?: T;
+  subtitle?: T;
+  images?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "tickets_select".
+ */
+export interface TicketsSelect<T extends boolean = true> {
+  attendee?: T;
+  event?: T;
+  source?: T;
+  paymentIntentId?: T;
+  createdAt?: T;
+  updatedAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "gallery7_select".
+ */
+export interface Gallery7Select<T extends boolean = true> {
+  label?: T;
+  title?: T;
+  images?: T;
+  descr?: T;
+  ctaText?: T;
+  ctaHref?: T;
+  rotateSpeed?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "testimonial25_select".
+ */
+export interface Testimonial25Select<T extends boolean = true> {
+  label?: T;
+  title?: T;
+  helperText?: T;
+  ctaText?: T;
+  ctaHref?: T;
+  cards?:
+    | T
+    | {
+        testimonial25CardBlock?: T | Testimonial25CardPropsSelect<T>;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Testimonial25CardProps_select".
+ */
+export interface Testimonial25CardPropsSelect<T extends boolean = true> {
+  image?: T;
+  quote?: T;
+  author?: T;
+  role?: T;
+  company?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "statisticsN_select".
+ */
+export interface StatisticsNSelect<T extends boolean = true> {
+  label?: T;
+  title?: T;
+  statisticsData?:
+    | T
+    | {
+        statistic?:
+          | T
+          | {
+              icon?: T;
+              value?: T;
+              suffix?: T;
+              description?: T;
+              id?: T;
+              blockName?: T;
+            };
+      };
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "faqLeftRight_select".
+ */
+export interface FaqLeftRightSelect<T extends boolean = true> {
+  title?: T;
+  label?: T;
+  helperText?: T;
+  QABlock?:
+    | T
+    | {
+        qABlock?: T | QABlockPropsSelect<T>;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "QABlockProps_select".
+ */
+export interface QABlockPropsSelect<T extends boolean = true> {
+  question?: T;
+  answer?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "lecturersN_select".
+ */
+export interface LecturersNSelect<T extends boolean = true> {
+  title?: T;
+  label?: T;
+  subheading?: T;
+  lecturers?:
+    | T
+    | {
+        name?: T;
+        role?: T;
+        bio?: T;
+        image?: T;
+        id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "agendaN_select".
+ */
+export interface AgendaNSelect<T extends boolean = true> {
+  title?: T;
+  label?: T;
+  items?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "payload-kv_select".
+ */
+export interface PayloadKvSelect<T extends boolean = true> {
+  key?: T;
+  data?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
