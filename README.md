@@ -14,3 +14,6 @@ bun types2
 ```
 to generate types.
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+# Analytics
+Posthog captures every event even with Brave & Ublock origin lite ad blockers
