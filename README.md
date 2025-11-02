@@ -16,4 +16,16 @@ to generate types.
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 # Analytics
-Posthog captures every event even with Brave & Ublock origin lite ad blockers
+Posthog captures every event even with Brave & Ublock origin lite ad blockers. Automatic Error tracking on Client works even with Brave & Ublock origin ad blockers.
+
+Tested Manually capturing Exception with Posthog:
+```ts
+const posthog = getPostHogServer()
+
+try {
+    throw new Error("This is a test exception for error tracking")
+} catch (error) {
+    posthog.captureException(error, 'test')
+}
+```
+With Posthog source map upload at build time it is ~10-20% slower.
