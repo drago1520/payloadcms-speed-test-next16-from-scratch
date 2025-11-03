@@ -2,13 +2,14 @@
   "name": "next-16-from-scratch",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "npm run services && next dev",
     "build": "next build --turbo",
     "start": "next start",
-    "gen": "bun types && bun importmap",
-    "types": "bun tsx ./node_modules/payload/bin.js generate:types",
-    "importmap": "dotenv -e .env -- bun payload generate:importmap",
+    "db": "bun db:types && bun db:importmap",
+    "db:types": "dotenv -e .env -- payload generate:types",
+    "db:importmap": "dotenv -e .env -- payload generate:importmap",
     "services": "docker compose up -d",
     "lint": "eslint"
   },
