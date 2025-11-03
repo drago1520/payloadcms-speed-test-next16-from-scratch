@@ -27,7 +27,7 @@ const nextConfig: NextConfig = {
   skipTrailingSlashRedirect: true,
 };
 let finalConfig: NextConfig = withPayload(nextConfig, {devBundleServerPackages: false})
-if(process.env.NODE_ENV === 'production') finalConfig = withPostHogConfig(finalConfig, {
+if(process.env.POSTHOG_SOURCEMAPS === 'production') finalConfig = withPostHogConfig(finalConfig, {
   personalApiKey: process.env.POSTHOG_API_KEY!, // Personal API Key
   envId: process.env.POSTHOG_ENV_ID!, // Environment ID
   host: process.env.NEXT_PUBLIC_POSTHOG_HOST, // (optional), defaults to https://us.posthog.com

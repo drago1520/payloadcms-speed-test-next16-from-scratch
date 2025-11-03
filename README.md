@@ -29,3 +29,16 @@ try {
 }
 ```
 With Posthog source map upload at build time it is ~10-20% slower.
+
+
+# Huge issue
+It's not just about adding `.ts` extentions at this point. 
+```log
+file:///C:/projects/research/payload/dev-server-speed-test-mongodb/next-16-from-scratch/src/collections/Attendees.ts:1
+import { CollectionConfig } from 'payload';
+         ^^^^^^^^^^^^^^^^
+
+SyntaxError: The requested module 'payload' does not provide an export named 'CollectionConfig'
+SyntaxError: The requested module 'payload' does not provide an export named 'CollectionConfig'
+```
+smth more serious is messed up. I tested with bun and pnpm.
