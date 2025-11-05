@@ -602,10 +602,6 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'agendaN';
         value: string | AgendaN;
-      } | null)
-    | ({
-        relationTo: 'payload-kv';
-        value: string | PayloadKv;
       } | null);
   globalSlug?: string | null;
   user: {
