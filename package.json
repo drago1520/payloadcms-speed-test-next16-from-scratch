@@ -11,7 +11,8 @@
     "db:types": "dotenv -e .env -- payload generate:types",
     "db:importmap": "dotenv -e .env -- payload generate:importmap",
     "services": "docker compose up -d",
-    "lint": "eslint"
+    "lint": "eslint",
+    "prepare": "husky"
   },
   "dependencies": {
     "@payloadcms/db-mongodb": "3.63.0-canary.5",
@@ -41,6 +42,7 @@
     "babel-plugin-react-compiler": "1.0.0",
     "eslint": "^9",
     "eslint-config-next": "16.0.2-canary.3",
+    "husky": "^9.1.7",
     "tailwindcss": "^4",
     "tsx": "^4.20.6",
     "typescript": "^5"
