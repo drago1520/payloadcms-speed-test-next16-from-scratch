@@ -19,8 +19,9 @@ const menuLinks = [
 export default async function Footer() {
   const config = await payloadConfig;
   const payload = await getPayload({ config: config });
-  const result = await payload.find({ collection: "contacts" });
-  const contactsData = result.docs[0];
+  const result = (await payload.find({ collection: "contacts" })).docs.find(
+    (r) => r,
+  );
 
   return (
     <footer className="text-foreground/80 bg-muted/80 pt-16 pb-8">
@@ -30,10 +31,10 @@ export default async function Footer() {
             <Link href="/" className="group mb-4 flex items-center">
               <Logo className="fill-foreground/80" />
             </Link>
-            {contactsData.socials && contactsData.socials.length > 0 && (
+            {result && result.socials && result.socials.length > 0 && (
               <div className="mt-6 border-t pt-6">
                 <SocialIconsOnly
-                  socials={contactsData.socials
+                  socials={result.socials
                     .filter((social) => social.platform && social.url)
                     .map((social) => ({
                       platform: social.platform!,

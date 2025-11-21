@@ -68,6 +68,7 @@ export interface Config {
   blocks: {};
   collections: {
     AboutPage: AboutPageProps;
+    HomePage: HomePageProps;
     NetworkingPage: NetworkingPageProps;
     users: User;
     media: Media;
@@ -91,6 +92,7 @@ export interface Config {
   collectionsJoins: {};
   collectionsSelect: {
     AboutPage: AboutPageSelect<false> | AboutPageSelect<true>;
+    HomePage: HomePageSelect<false> | HomePageSelect<true>;
     NetworkingPage: NetworkingPageSelect<false> | NetworkingPageSelect<true>;
     users: UsersSelect<false> | UsersSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
@@ -228,18 +230,138 @@ export interface PartnersNProps {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "NetworkingPage".
+ * via the `definition` "HomePage".
  */
-export interface NetworkingPageProps {
+export interface HomePageProps {
   id: string;
+  subheading?: string | null;
+  heroImg?: (string | null) | Media;
+  faqLeftRight?: (string | null) | FaqLeftRight;
+  gallery7?: (string | null) | Gallery7;
+  testimonials25?: (string | null) | Testimonial25Props;
   /**
-   * Ако не въведете събитие, най-новото ще се покаже.
+   * Ако не въведете, ще се показват всички включени актуални събития
    */
-  event?: (string | null) | EventProps;
+  events?: (string | EventProps)[] | null;
+  statisticsN?: (string | null) | StatisticsProps;
   partners?: (string | null) | PartnersNProps;
   label: string;
   updatedAt: string;
   createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "faqLeftRight".
+ */
+export interface FaqLeftRight {
+  id: string;
+  title: string;
+  label: string;
+  helperText: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ("ltr" | "rtl") | null;
+      format: "left" | "start" | "center" | "right" | "end" | "justify" | "";
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  QABlock: QABlockProps[];
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "QABlockProps".
+ */
+export interface QABlockProps {
+  question: string;
+  answer: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ("ltr" | "rtl") | null;
+      format: "left" | "start" | "center" | "right" | "end" | "justify" | "";
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  id?: string | null;
+  blockName?: string | null;
+  blockType: "qABlock";
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "gallery7".
+ */
+export interface Gallery7 {
+  id: string;
+  label: string;
+  title: string;
+  images: (string | Media)[];
+  descr?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ("ltr" | "rtl") | null;
+      format: "left" | "start" | "center" | "right" | "end" | "justify" | "";
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  ctaText?: string | null;
+  ctaHref?: string | null;
+  rotateSpeed?: number | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "testimonial25".
+ */
+export interface Testimonial25Props {
+  id: string;
+  label: string;
+  title: string;
+  helperText?: string | null;
+  ctaText?: string | null;
+  ctaHref?: string | null;
+  /**
+   * Добавете отделните карти за препоръки. При нужда копирайте вече съществуващи записи.
+   */
+  cards: Testimonial25CardProps[];
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Testimonial25CardProps".
+ */
+export interface Testimonial25CardProps {
+  image: string | Media;
+  quote: string;
+  author: string;
+  role: string;
+  company: string;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: "testimonial25CardBlock";
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -312,6 +434,21 @@ export interface EventProps {
    * Gravity bar по подразбиране
    */
   locationImg?: (string | null) | Media;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "NetworkingPage".
+ */
+export interface NetworkingPageProps {
+  id: string;
+  /**
+   * Ако не въведете събитие, най-новото ще се покаже.
+   */
+  event?: (string | null) | EventProps;
+  partners?: (string | null) | PartnersNProps;
+  label: string;
   updatedAt: string;
   createdAt: string;
 }
@@ -403,120 +540,6 @@ export interface Ticket {
   paymentIntentId?: string | null;
   createdAt: string;
   updatedAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "gallery7".
- */
-export interface Gallery7 {
-  id: string;
-  label: string;
-  title: string;
-  images: (string | Media)[];
-  descr?: {
-    root: {
-      type: string;
-      children: {
-        type: any;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ("ltr" | "rtl") | null;
-      format: "left" | "start" | "center" | "right" | "end" | "justify" | "";
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  } | null;
-  ctaText?: string | null;
-  ctaHref?: string | null;
-  rotateSpeed?: number | null;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "testimonial25".
- */
-export interface Testimonial25Props {
-  id: string;
-  label: string;
-  title: string;
-  helperText?: string | null;
-  ctaText?: string | null;
-  ctaHref?: string | null;
-  /**
-   * Добавете отделните карти за препоръки. При нужда копирайте вече съществуващи записи.
-   */
-  cards: Testimonial25CardProps[];
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "Testimonial25CardProps".
- */
-export interface Testimonial25CardProps {
-  image: string | Media;
-  quote: string;
-  author: string;
-  role: string;
-  company: string;
-  id?: string | null;
-  blockName?: string | null;
-  blockType: "testimonial25CardBlock";
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "faqLeftRight".
- */
-export interface FaqLeftRight {
-  id: string;
-  title: string;
-  label: string;
-  helperText: {
-    root: {
-      type: string;
-      children: {
-        type: any;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ("ltr" | "rtl") | null;
-      format: "left" | "start" | "center" | "right" | "end" | "justify" | "";
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  };
-  QABlock: QABlockProps[];
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "QABlockProps".
- */
-export interface QABlockProps {
-  question: string;
-  answer: {
-    root: {
-      type: string;
-      children: {
-        type: any;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ("ltr" | "rtl") | null;
-      format: "left" | "start" | "center" | "right" | "end" | "justify" | "";
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  };
-  id?: string | null;
-  blockName?: string | null;
-  blockType: "qABlock";
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -643,6 +666,10 @@ export interface PayloadLockedDocument {
         value: string | AboutPageProps;
       } | null)
     | ({
+        relationTo: "HomePage";
+        value: string | HomePageProps;
+      } | null)
+    | ({
         relationTo: "NetworkingPage";
         value: string | NetworkingPageProps;
       } | null)
@@ -749,6 +776,23 @@ export interface PayloadMigration {
  * via the `definition` "AboutPage_select".
  */
 export interface AboutPageSelect<T extends boolean = true> {
+  statisticsN?: T;
+  partners?: T;
+  label?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "HomePage_select".
+ */
+export interface HomePageSelect<T extends boolean = true> {
+  subheading?: T;
+  heroImg?: T;
+  faqLeftRight?: T;
+  gallery7?: T;
+  testimonials25?: T;
+  events?: T;
   statisticsN?: T;
   partners?: T;
   label?: T;

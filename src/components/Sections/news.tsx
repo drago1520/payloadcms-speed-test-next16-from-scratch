@@ -8,7 +8,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { ArrowRight, Calendar } from "lucide-react";
+import { Calendar } from "lucide-react";
 import Link from "next/link";
 import { ComponentProps } from "react";
 import { cn } from "@/lib/utils";
@@ -67,9 +67,9 @@ export default function News({
             <article key={article.id}>
               <Card className="group relative h-full cursor-pointer overflow-hidden transition-shadow hover:shadow-lg">
                 <Link href="#">
-                  <div className="relative aspect-[3/2]">
+                  <div className="relative aspect-3/2">
                     <Image
-                      src="/card.avif?height=200&width=300"
+                      src="/card.avif"
                       alt={`Featured image for ${article.title}`}
                       fill
                       className="object-cover transition-all duration-500 group-hover:scale-105"

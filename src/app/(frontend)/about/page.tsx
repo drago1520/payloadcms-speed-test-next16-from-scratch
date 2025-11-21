@@ -13,28 +13,11 @@ export const dynamic = "force-dynamic";
 export default async function Page() {
   const config = await payloadConfig;
   const payload = await getPayload({ config: config });
-  // const { docs } = await payload.find({
-  //   collection: 'pages',
-  //   where: {
-  //     slug: {
-  //       equals: 'about',
-  //     },
-  //   },
-  //   limit: 1,
-  // });
-  // if (docs.length < 1) {
-  //   console.error('No data for /about. Check if exists or the slug.');
-  //   return;
-  // }
-  // const [aboutPage] = docs;
-  // const statisticsProps = aboutPage.blocks.find(block => block.blockType === 'statistics');
-  // const { docs: marketingSections } = await payload.find({
-  //   collection: 'marketing-sections',
-  //   depth: 400,
-  // });
-  // const partnersProps = marketingSections.map(section => section.Partners?.partners?.find(blocks => blocks.blockType === 'partners'))?.[0];
-  const result = await payload.find({ collection: "AboutPage" });
-  const { statisticsN, partners } = result.docs[0];
+  const result = (await payload.find({ collection: "AboutPage" })).docs.find(
+    (r) => r,
+  );
+  if (!result) throw new Error("Няма данни за about page");
+  const { statisticsN, partners } = result;
   return (
     <div className="min-h-screen">
       <Header />

@@ -14,10 +14,12 @@ export const dynamic = "force-dynamic";
 export default async function Page() {
   const config = await payloadConfig;
   const payload = await getPayload({ config: config });
-
-  const result = await payload.find({ collection: "NetworkingPage" });
+  const result = (
+    await payload.find({ collection: "NetworkingPage" })
+  ).docs.find((r) => r);
+  if (!result) throw new Error("Няма данни за страницата");
   // eslint-disable-next-line prefer-const
-  let { event, partners } = result.docs[0];
+  let { event, partners } = result;
   if (!event) {
     const result2 = await payload.find({
       collection: "events",

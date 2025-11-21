@@ -24,6 +24,7 @@ import { getServerSideURL } from "./lib/utils/getURL";
 import { Contacts } from "./payload/collections/contacts-collection";
 import { AboutPage } from "./payload/pages/about-page-collection";
 import { NetworkingPage } from "./payload/pages/networking-page-collection";
+import { HomePage } from "./payload/pages/home-page-collection";
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
@@ -57,6 +58,7 @@ export default buildConfig({
   //Pages, Homepage, AboutPage, ConfPage,
   collections: [
     AboutPage,
+    HomePage,
     NetworkingPage,
     Users,
     Media,
