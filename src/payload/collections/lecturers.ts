@@ -2,6 +2,9 @@
 
 export const LecturersCollection: CollectionConfig = {
   slug: "lecturersN",
+  typescript: {
+    interface: "LecturersNProps",
+  },
   labels: {
     singular: "Лектори - Конференция",
     plural: "Лектори - Конференция",

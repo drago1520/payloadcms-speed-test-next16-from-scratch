@@ -79,8 +79,8 @@ export interface Config {
     testimonial25: Testimonial25Props;
     statisticsN: StatisticsProps;
     faqLeftRight: FaqLeftRight;
-    lecturersN: LecturersN;
-    agendaN: AgendaN;
+    lecturersN: LecturersNProps;
+    agendaN: AgendaNProps;
     contacts: ContactsProps;
     "payload-kv": PayloadKv;
     "payload-locked-documents": PayloadLockedDocument;
@@ -505,7 +505,7 @@ export interface QABlockProps {
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "lecturersN".
  */
-export interface LecturersN {
+export interface LecturersNProps {
   id: string;
   title: string;
   label: string;
@@ -524,7 +524,7 @@ export interface LecturersN {
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "agendaN".
  */
-export interface AgendaN {
+export interface AgendaNProps {
   id: string;
   title?: string | null;
   label: string;
@@ -671,11 +671,11 @@ export interface PayloadLockedDocument {
       } | null)
     | ({
         relationTo: "lecturersN";
-        value: string | LecturersN;
+        value: string | LecturersNProps;
       } | null)
     | ({
         relationTo: "agendaN";
-        value: string | AgendaN;
+        value: string | AgendaNProps;
       } | null)
     | ({
         relationTo: "contacts";

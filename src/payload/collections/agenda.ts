@@ -2,6 +2,9 @@
 
 export const AgendaCollection: CollectionConfig = {
   slug: "agendaN",
+  typescript: {
+    interface: "AgendaNProps",
+  },
   labels: {
     singular: "Agenda 6 карти",
     plural: "Agenda 6 карти",
