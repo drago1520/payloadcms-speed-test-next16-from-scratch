@@ -16,3 +16,4 @@ const eslintConfig = defineConfig([
 ]);
 
 export default eslintConfig;
+//TODO useEffect, JS (for switch), https://github.com/dustinspecker/awesome-eslint?tab=readme-ov-file, compiler, tailwindcss
