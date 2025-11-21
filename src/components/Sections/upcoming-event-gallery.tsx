@@ -15,9 +15,9 @@ import {
 import Image from "next/image";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
-import { Event } from "@/payload-types";
 import { errorMsgs } from "@/utils/error";
 import { formatToBulgarianDate } from "@/utils/format-bulgarian-datetime";
+import { EventProps } from "@/payload-types";
 
 interface DatItem {
   id: string;
@@ -101,7 +101,7 @@ const UpcomingEvents = ({
   className,
   events,
   ...props
-}: ComponentProps<"section"> & { events: Event[] }) => {
+}: ComponentProps<"section"> & { events: EventProps[] }) => {
   events = events.map((event) => {
     if (typeof event.thumbnail === "string")
       throw new Error(errorMsgs.imgIsString);

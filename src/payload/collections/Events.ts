@@ -2,6 +2,9 @@ import { CollectionConfig } from "payload";
 
 export const Events: CollectionConfig = {
   slug: "events",
+  typescript: {
+    interface: "EventProps",
+  },
   fields: [
     {
       name: "title",

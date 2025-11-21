@@ -53,6 +53,7 @@
     "posthog-node": "^5.11.0",
     "prism-react-renderer": "^2.4.1",
     "react": "19.2.0",
+    "react-countdown": "^2.3.6",
     "react-countup": "^6.5.3",
     "react-dom": "19.2.0",
     "react-fast-marquee": "^1.6.5",

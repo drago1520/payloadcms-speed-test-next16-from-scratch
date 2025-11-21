@@ -132,7 +132,7 @@ function NewsletterForm({
   );
 }
 
-export default async function ContactPage() {
+export default async function Page() {
   return (
     <div className="pt-24 pb-24">
       <PageClient />

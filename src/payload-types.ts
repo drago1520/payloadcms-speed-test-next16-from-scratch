@@ -68,10 +68,11 @@ export interface Config {
   blocks: {};
   collections: {
     AboutPage: AboutPageProps;
+    NetworkingPage: NetworkingPageProps;
     users: User;
     media: Media;
     attendees: Attendee;
-    events: Event;
+    events: EventProps;
     "marketing-sections": MarketingSection;
     partnersN: PartnersNProps;
     tickets: Ticket;
@@ -90,6 +91,7 @@ export interface Config {
   collectionsJoins: {};
   collectionsSelect: {
     AboutPage: AboutPageSelect<false> | AboutPageSelect<true>;
+    NetworkingPage: NetworkingPageSelect<false> | NetworkingPageSelect<true>;
     users: UsersSelect<false> | UsersSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
     attendees: AttendeesSelect<false> | AttendeesSelect<true>;
@@ -226,37 +228,16 @@ export interface PartnersNProps {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "users".
+ * via the `definition` "NetworkingPage".
  */
-export interface User {
+export interface NetworkingPageProps {
   id: string;
-  updatedAt: string;
-  createdAt: string;
-  email: string;
-  resetPasswordToken?: string | null;
-  resetPasswordExpiration?: string | null;
-  salt?: string | null;
-  hash?: string | null;
-  loginAttempts?: number | null;
-  lockUntil?: string | null;
-  sessions?:
-    | {
-        id: string;
-        createdAt?: string | null;
-        expiresAt: string;
-      }[]
-    | null;
-  password?: string | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "attendees".
- */
-export interface Attendee {
-  id: string;
-  email?: string | null;
-  name?: string | null;
-  phone?: string | null;
+  /**
+   * Ако не въведете събитие, най-новото ще се покаже.
+   */
+  event?: (string | null) | EventProps;
+  partners?: (string | null) | PartnersNProps;
+  label: string;
   updatedAt: string;
   createdAt: string;
 }
@@ -264,7 +245,7 @@ export interface Attendee {
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "events".
  */
-export interface Event {
+export interface EventProps {
   id: string;
   title: string;
   description: {
@@ -336,6 +317,42 @@ export interface Event {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "users".
+ */
+export interface User {
+  id: string;
+  updatedAt: string;
+  createdAt: string;
+  email: string;
+  resetPasswordToken?: string | null;
+  resetPasswordExpiration?: string | null;
+  salt?: string | null;
+  hash?: string | null;
+  loginAttempts?: number | null;
+  lockUntil?: string | null;
+  sessions?:
+    | {
+        id: string;
+        createdAt?: string | null;
+        expiresAt: string;
+      }[]
+    | null;
+  password?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "attendees".
+ */
+export interface Attendee {
+  id: string;
+  email?: string | null;
+  name?: string | null;
+  phone?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "marketing-sections".
  */
 export interface MarketingSection {
@@ -381,7 +398,7 @@ export interface Ticket {
   /**
    * Трябва да има създадено събитие. /admin > Events > "add new"
    */
-  event: string | Event;
+  event: string | EventProps;
   source: "stripe" | "manually";
   paymentIntentId?: string | null;
   createdAt: string;
@@ -626,6 +643,10 @@ export interface PayloadLockedDocument {
         value: string | AboutPageProps;
       } | null)
     | ({
+        relationTo: "NetworkingPage";
+        value: string | NetworkingPageProps;
+      } | null)
+    | ({
         relationTo: "users";
         value: string | User;
       } | null)
@@ -639,7 +660,7 @@ export interface PayloadLockedDocument {
       } | null)
     | ({
         relationTo: "events";
-        value: string | Event;
+        value: string | EventProps;
       } | null)
     | ({
         relationTo: "marketing-sections";
@@ -729,6 +750,17 @@ export interface PayloadMigration {
  */
 export interface AboutPageSelect<T extends boolean = true> {
   statisticsN?: T;
+  partners?: T;
+  label?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "NetworkingPage_select".
+ */
+export interface NetworkingPageSelect<T extends boolean = true> {
+  event?: T;
   partners?: T;
   label?: T;
   updatedAt?: T;

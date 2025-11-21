@@ -10,7 +10,7 @@ import payloadConfig from "@payload-config";
 import { getPayload } from "payload";
 
 export const dynamic = "force-dynamic";
-export default async function HomePage() {
+export default async function Page() {
   const config = await payloadConfig;
   const payload = await getPayload({ config: config });
   // const { docs } = await payload.find({

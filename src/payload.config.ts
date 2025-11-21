@@ -23,6 +23,7 @@ import { AgendaCollection } from "./payload/collections/agenda";
 import { getServerSideURL } from "./lib/utils/getURL";
 import { Contacts } from "./payload/collections/contacts-collection";
 import { AboutPage } from "./payload/pages/about-page-collection";
+import { NetworkingPage } from "./payload/pages/networking-page-collection";
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
@@ -56,6 +57,7 @@ export default buildConfig({
   //Pages, Homepage, AboutPage, ConfPage,
   collections: [
     AboutPage,
+    NetworkingPage,
     Users,
     Media,
     Attendees,
@@ -84,7 +86,7 @@ export default buildConfig({
   plugins: [
     // storage-adapter-placeholder
   ],
-  defaultDepth: 999,
+  defaultDepth: 999, //DO NOT REMOVE, all payload.find() will explode
   // indexSortableFields
   // kv
   // telemetry: true
