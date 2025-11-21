@@ -1,4 +1,6 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Deprecated
+This was a staging repo for the full re-write of [Burgas Business Hub (bbh)](https://github.com/drago1520/bbh)
 
 ## Getting Started
 
