@@ -3,6 +3,9 @@ import { Testimonial25CardBlock } from "./TODO-turnIntoCollection-testimonial-25
 
 export const Testimonial25Collection: CollectionConfig = {
   slug: "testimonial25",
+  typescript: {
+    interface: "Testimonial25Props",
+  },
   labels: {
     singular: "Препоръка",
     plural: "Препоръки",

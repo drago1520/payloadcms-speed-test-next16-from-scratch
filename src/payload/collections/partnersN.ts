@@ -1,10 +1,13 @@
 import { CollectionConfig } from "payload";
 
-export const Partners2Collection: CollectionConfig = {
-  slug: "partners2",
+export const PartnersNCollection: CollectionConfig = {
+  slug: "partnersN",
+  typescript: {
+    interface: "PartnersNProps",
+  },
   labels: {
-    singular: "Партньори2",
-    plural: "Партньори2",
+    singular: "Партньори",
+    plural: "Партньори",
   },
   admin: {
     hidden: true, //so it don't appear in the main admin UI to clutter
@@ -15,7 +18,7 @@ export const Partners2Collection: CollectionConfig = {
       type: "text",
       name: "label",
       label: "Internal Label",
-      defaultValue: "Партньори 2",
+      defaultValue: "Партньори Лента с лога",
       required: true,
       admin: {
         description:

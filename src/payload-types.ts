@@ -13,53 +13,53 @@
  * via the `definition` "supportedTimezones".
  */
 export type SupportedTimezones =
-  | 'Pacific/Midway'
-  | 'Pacific/Niue'
-  | 'Pacific/Honolulu'
-  | 'Pacific/Rarotonga'
-  | 'America/Anchorage'
-  | 'Pacific/Gambier'
-  | 'America/Los_Angeles'
-  | 'America/Tijuana'
-  | 'America/Denver'
-  | 'America/Phoenix'
-  | 'America/Chicago'
-  | 'America/Guatemala'
-  | 'America/New_York'
-  | 'America/Bogota'
-  | 'America/Caracas'
-  | 'America/Santiago'
-  | 'America/Buenos_Aires'
-  | 'America/Sao_Paulo'
-  | 'Atlantic/South_Georgia'
-  | 'Atlantic/Azores'
-  | 'Atlantic/Cape_Verde'
-  | 'Europe/London'
-  | 'Europe/Berlin'
-  | 'Africa/Lagos'
-  | 'Europe/Athens'
-  | 'Africa/Cairo'
-  | 'Europe/Moscow'
-  | 'Asia/Riyadh'
-  | 'Asia/Dubai'
-  | 'Asia/Baku'
-  | 'Asia/Karachi'
-  | 'Asia/Tashkent'
-  | 'Asia/Calcutta'
-  | 'Asia/Dhaka'
-  | 'Asia/Almaty'
-  | 'Asia/Jakarta'
-  | 'Asia/Bangkok'
-  | 'Asia/Shanghai'
-  | 'Asia/Singapore'
-  | 'Asia/Tokyo'
-  | 'Asia/Seoul'
-  | 'Australia/Brisbane'
-  | 'Australia/Sydney'
-  | 'Pacific/Guam'
-  | 'Pacific/Noumea'
-  | 'Pacific/Auckland'
-  | 'Pacific/Fiji';
+  | "Pacific/Midway"
+  | "Pacific/Niue"
+  | "Pacific/Honolulu"
+  | "Pacific/Rarotonga"
+  | "America/Anchorage"
+  | "Pacific/Gambier"
+  | "America/Los_Angeles"
+  | "America/Tijuana"
+  | "America/Denver"
+  | "America/Phoenix"
+  | "America/Chicago"
+  | "America/Guatemala"
+  | "America/New_York"
+  | "America/Bogota"
+  | "America/Caracas"
+  | "America/Santiago"
+  | "America/Buenos_Aires"
+  | "America/Sao_Paulo"
+  | "Atlantic/South_Georgia"
+  | "Atlantic/Azores"
+  | "Atlantic/Cape_Verde"
+  | "Europe/London"
+  | "Europe/Berlin"
+  | "Africa/Lagos"
+  | "Europe/Athens"
+  | "Africa/Cairo"
+  | "Europe/Moscow"
+  | "Asia/Riyadh"
+  | "Asia/Dubai"
+  | "Asia/Baku"
+  | "Asia/Karachi"
+  | "Asia/Tashkent"
+  | "Asia/Calcutta"
+  | "Asia/Dhaka"
+  | "Asia/Almaty"
+  | "Asia/Jakarta"
+  | "Asia/Bangkok"
+  | "Asia/Shanghai"
+  | "Asia/Singapore"
+  | "Asia/Tokyo"
+  | "Asia/Seoul"
+  | "Australia/Brisbane"
+  | "Australia/Sydney"
+  | "Pacific/Guam"
+  | "Pacific/Noumea"
+  | "Pacific/Auckland"
+  | "Pacific/Fiji";
 
 export interface Config {
   auth: {
@@ -67,34 +67,37 @@ export interface Config {
   };
   blocks: {};
   collections: {
+    AboutPage: AboutPageProps;
     users: User;
     media: Media;
     attendees: Attendee;
     events: Event;
-    'marketing-sections': MarketingSection;
-    partners: Partner;
-    partners2: Partners2;
+    "marketing-sections": MarketingSection;
+    partnersN: PartnersNProps;
     tickets: Ticket;
     gallery7: Gallery7;
-    testimonial25: Testimonial25;
-    statisticsN: StatisticsN;
+    testimonial25: Testimonial25Props;
+    statisticsN: StatisticsProps;
     faqLeftRight: FaqLeftRight;
     lecturersN: LecturersN;
     agendaN: AgendaN;
-    'payload-kv': PayloadKv;
-    'payload-locked-documents': PayloadLockedDocument;
-    'payload-preferences': PayloadPreference;
-    'payload-migrations': PayloadMigration;
+    contacts: ContactsProps;
+    "payload-kv": PayloadKv;
+    "payload-locked-documents": PayloadLockedDocument;
+    "payload-preferences": PayloadPreference;
+    "payload-migrations": PayloadMigration;
   };
   collectionsJoins: {};
   collectionsSelect: {
+    AboutPage: AboutPageSelect<false> | AboutPageSelect<true>;
     users: UsersSelect<false> | UsersSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
     attendees: AttendeesSelect<false> | AttendeesSelect<true>;
     events: EventsSelect<false> | EventsSelect<true>;
-    'marketing-sections': MarketingSectionsSelect<false> | MarketingSectionsSelect<true>;
-    partners: PartnersSelect<false> | PartnersSelect<true>;
-    partners2: Partners2Select<false> | Partners2Select<true>;
+    "marketing-sections":
+      | MarketingSectionsSelect<false>
+      | MarketingSectionsSelect<true>;
+    partnersN: PartnersNSelect<false> | PartnersNSelect<true>;
     tickets: TicketsSelect<false> | TicketsSelect<true>;
     gallery7: Gallery7Select<false> | Gallery7Select<true>;
     testimonial25: Testimonial25Select<false> | Testimonial25Select<true>;
@@ -102,10 +105,17 @@ export interface Config {
     faqLeftRight: FaqLeftRightSelect<false> | FaqLeftRightSelect<true>;
     lecturersN: LecturersNSelect<false> | LecturersNSelect<true>;
     agendaN: AgendaNSelect<false> | AgendaNSelect<true>;
-    'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
-    'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
-    'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
-    'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
+    contacts: ContactsSelect<false> | ContactsSelect<true>;
+    "payload-kv": PayloadKvSelect<false> | PayloadKvSelect<true>;
+    "payload-locked-documents":
+      | PayloadLockedDocumentsSelect<false>
+      | PayloadLockedDocumentsSelect<true>;
+    "payload-preferences":
+      | PayloadPreferencesSelect<false>
+      | PayloadPreferencesSelect<true>;
+    "payload-migrations":
+      | PayloadMigrationsSelect<false>
+      | PayloadMigrationsSelect<true>;
   };
   db: {
     defaultIDType: string;
@@ -114,7 +124,7 @@ export interface Config {
   globalsSelect: {};
   locale: null;
   user: User & {
-    collection: 'users';
+    collection: "users";
   };
   jobs: {
     tasks: unknown;
@@ -141,6 +151,81 @@ export interface UserAuthOperations {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "AboutPage".
+ */
+export interface AboutPageProps {
+  id: string;
+  statisticsN?: (string | null) | StatisticsProps;
+  partners?: (string | null) | PartnersNProps;
+  label: string;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "statisticsN".
+ */
+export interface StatisticsProps {
+  id: string;
+  label: string;
+  /**
+   * Показва се над трите статистики
+   */
+  title?: string | null;
+  statisticsData: {
+    /**
+     * Трябва поне да е 1:1. 48x48 px ще се рендерира.
+     */
+    icon?: (string | null) | Media;
+    value: number;
+    /**
+     * Показва се точно до числото, а НЕ на нов ред като описанието.
+     */
+    suffix?: string | null;
+    description: string;
+    id?: string | null;
+    blockName?: string | null;
+    blockType: "statistic";
+  }[];
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "media".
+ */
+export interface Media {
+  id: string;
+  alt: string;
+  updatedAt: string;
+  createdAt: string;
+  url?: string | null;
+  thumbnailURL?: string | null;
+  filename?: string | null;
+  mimeType?: string | null;
+  filesize?: number | null;
+  width?: number | null;
+  height?: number | null;
+  focalX?: number | null;
+  focalY?: number | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "partnersN".
+ */
+export interface PartnersNProps {
+  id: string;
+  /**
+   * Така ще се показва раздела, когато го избирате от някоя страница. Да НЕ се трие, и препоръчително да не се пипа.
+   */
+  label: string;
+  subtitle?: string | null;
+  images: (string | Media)[];
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "users".
  */
 export interface User {
@@ -162,25 +247,6 @@ export interface User {
       }[]
     | null;
   password?: string | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "media".
- */
-export interface Media {
-  id: string;
-  alt: string;
-  updatedAt: string;
-  createdAt: string;
-  url?: string | null;
-  thumbnailURL?: string | null;
-  filename?: string | null;
-  mimeType?: string | null;
-  filesize?: number | null;
-  width?: number | null;
-  height?: number | null;
-  focalX?: number | null;
-  focalY?: number | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -209,8 +275,8 @@ export interface Event {
         version: number;
         [k: string]: unknown;
       }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      direction: ("ltr" | "rtl") | null;
+      format: "left" | "start" | "center" | "right" | "end" | "justify" | "";
       indent: number;
       version: number;
     };
@@ -227,8 +293,8 @@ export interface Event {
         version: number;
         [k: string]: unknown;
       }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      direction: ("ltr" | "rtl") | null;
+      format: "left" | "start" | "center" | "right" | "end" | "justify" | "";
       indent: number;
       version: number;
     };
@@ -238,9 +304,9 @@ export interface Event {
    * Stripe Dashboard > Search (top center) > Payment Links > + New; Сложете redirect към сайта. Може с имейл, телефон или комбинация.
    */
   stripeUrl?: string | null;
-  type: 'networking' | 'businessBreakfast' | 'conference' | 'courses';
+  type: "networking" | "businessBreakfast" | "conference" | "courses";
   date: string;
-  active: 'false' | 'true';
+  active: "false" | "true";
   /**
    * 2 имена на лектора
    */
@@ -288,10 +354,11 @@ export interface MarketingSection {
  * via the `definition` "PartnersProps".
  */
 export interface PartnersProps {
+  subtitle?: string | null;
   images: (string | Media)[];
   id?: string | null;
   blockName?: string | null;
-  blockType: 'partners';
+  blockType: "partners";
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -302,32 +369,7 @@ export interface Partners2Props {
   images: (string | Media)[];
   id?: string | null;
   blockName?: string | null;
-  blockType: 'partners2';
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "partners".
- */
-export interface Partner {
-  id: string;
-  partners: PartnersProps[];
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "partners2".
- */
-export interface Partners2 {
-  id: string;
-  /**
-   * Така ще се показва раздела, когато го избирате от някоя страница. Да НЕ се трие, и препоръчително да не се пипа.
-   */
-  label: string;
-  subtitle?: string | null;
-  images: (string | Media)[];
-  updatedAt: string;
-  createdAt: string;
+  blockType: "partners2";
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -340,7 +382,7 @@ export interface Ticket {
    * Трябва да има създадено събитие. /admin > Events > "add new"
    */
   event: string | Event;
-  source: 'stripe' | 'manually';
+  source: "stripe" | "manually";
   paymentIntentId?: string | null;
   createdAt: string;
   updatedAt: string;
@@ -362,8 +404,8 @@ export interface Gallery7 {
         version: number;
         [k: string]: unknown;
       }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      direction: ("ltr" | "rtl") | null;
+      format: "left" | "start" | "center" | "right" | "end" | "justify" | "";
       indent: number;
       version: number;
     };
@@ -379,7 +421,7 @@ export interface Gallery7 {
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "testimonial25".
  */
-export interface Testimonial25 {
+export interface Testimonial25Props {
   id: string;
   label: string;
   title: string;
@@ -405,36 +447,7 @@ export interface Testimonial25CardProps {
   company: string;
   id?: string | null;
   blockName?: string | null;
-  blockType: 'testimonial25CardBlock';
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "statisticsN".
- */
-export interface StatisticsN {
-  id: string;
-  label: string;
-  /**
-   * Показва се над трите статистики
-   */
-  title?: string | null;
-  statisticsData: {
-    /**
-     * Трябва поне да е 1:1. 48x48 px ще се рендерира.
-     */
-    icon?: (string | null) | Media;
-    value: number;
-    /**
-     * Показва се точно до числото, а НЕ на нов ред като описанието.
-     */
-    suffix?: string | null;
-    description: string;
-    id?: string | null;
-    blockName?: string | null;
-    blockType: 'statistic';
-  }[];
-  updatedAt: string;
-  createdAt: string;
+  blockType: "testimonial25CardBlock";
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -452,8 +465,8 @@ export interface FaqLeftRight {
         version: number;
         [k: string]: unknown;
       }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      direction: ("ltr" | "rtl") | null;
+      format: "left" | "start" | "center" | "right" | "end" | "justify" | "";
       indent: number;
       version: number;
     };
@@ -477,8 +490,8 @@ export interface QABlockProps {
         version: number;
         [k: string]: unknown;
       }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      direction: ("ltr" | "rtl") | null;
+      format: "left" | "start" | "center" | "right" | "end" | "justify" | "";
       indent: number;
       version: number;
     };
@@ -486,7 +499,7 @@ export interface QABlockProps {
   };
   id?: string | null;
   blockName?: string | null;
-  blockType: 'qABlock';
+  blockType: "qABlock";
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -525,6 +538,67 @@ export interface AgendaN {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "contacts".
+ */
+export interface ContactsProps {
+  id: string;
+  /**
+   * Показва се над Формуляра за контакти
+   */
+  title?: string | null;
+  subheading?: string | null;
+  /**
+   * google.com/maps > намери място > "Share" > Embed a map > копирайте само url-a в кавичките. 15 сек  tutorial: https://vento.so/view/9e099913-bb15-4990-af47-5b62dc41b98e?utm_medium=share
+   */
+  gmaps?: string | null;
+  cta: string;
+  address?: string | null;
+  phones?:
+    | {
+        phone?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  emails?:
+    | {
+        email?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * Социалки. Важно е да има youtube за SEO.
+   */
+  socials?:
+    | {
+        platform:
+          | "facebook"
+          | "instagram"
+          | "twitter"
+          | "linkedin"
+          | "youtube"
+          | "tiktok"
+          | "whatsapp"
+          | "telegram"
+          | "viber"
+          | "discord"
+          | "snapchat"
+          | "pinterest"
+          | "reddit"
+          | "twitch"
+          | "medium"
+          | "slack"
+          | "skype"
+          | "threads"
+          | "yelp";
+        url: string;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-kv".
  */
 export interface PayloadKv {
@@ -548,64 +622,68 @@ export interface PayloadLockedDocument {
   id: string;
   document?:
     | ({
-        relationTo: 'users';
+        relationTo: "AboutPage";
+        value: string | AboutPageProps;
+      } | null)
+    | ({
+        relationTo: "users";
         value: string | User;
       } | null)
     | ({
-        relationTo: 'media';
+        relationTo: "media";
         value: string | Media;
       } | null)
     | ({
-        relationTo: 'attendees';
+        relationTo: "attendees";
         value: string | Attendee;
       } | null)
     | ({
-        relationTo: 'events';
+        relationTo: "events";
         value: string | Event;
       } | null)
     | ({
-        relationTo: 'marketing-sections';
+        relationTo: "marketing-sections";
         value: string | MarketingSection;
       } | null)
     | ({
-        relationTo: 'partners';
-        value: string | Partner;
+        relationTo: "partnersN";
+        value: string | PartnersNProps;
       } | null)
     | ({
-        relationTo: 'partners2';
-        value: string | Partners2;
-      } | null)
-    | ({
-        relationTo: 'tickets';
+        relationTo: "tickets";
         value: string | Ticket;
       } | null)
     | ({
-        relationTo: 'gallery7';
+        relationTo: "gallery7";
         value: string | Gallery7;
       } | null)
     | ({
-        relationTo: 'testimonial25';
-        value: string | Testimonial25;
+        relationTo: "testimonial25";
+        value: string | Testimonial25Props;
       } | null)
     | ({
-        relationTo: 'statisticsN';
-        value: string | StatisticsN;
+        relationTo: "statisticsN";
+        value: string | StatisticsProps;
       } | null)
     | ({
-        relationTo: 'faqLeftRight';
+        relationTo: "faqLeftRight";
         value: string | FaqLeftRight;
       } | null)
     | ({
-        relationTo: 'lecturersN';
+        relationTo: "lecturersN";
         value: string | LecturersN;
       } | null)
     | ({
-        relationTo: 'agendaN';
+        relationTo: "agendaN";
         value: string | AgendaN;
+      } | null)
+    | ({
+        relationTo: "contacts";
+        value: string | ContactsProps;
       } | null);
   globalSlug?: string | null;
   user: {
-    relationTo: 'users';
+    relationTo: "users";
     value: string | User;
   };
   updatedAt: string;
@@ -618,7 +696,7 @@ export interface PayloadLockedDocument {
 export interface PayloadPreference {
   id: string;
   user: {
-    relationTo: 'users';
+    relationTo: "users";
     value: string | User;
   };
   key?: string | null;
@@ -644,6 +722,17 @@ export interface PayloadMigration {
   batch?: number | null;
   updatedAt: string;
   createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "AboutPage_select".
+ */
+export interface AboutPageSelect<T extends boolean = true> {
+  statisticsN?: T;
+  partners?: T;
+  label?: T;
+  updatedAt?: T;
+  createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -748,6 +837,7 @@ export interface MarketingSectionsSelect<T extends boolean = true> {
  * via the `definition` "PartnersProps_select".
  */
 export interface PartnersPropsSelect<T extends boolean = true> {
+  subtitle?: T;
   images?: T;
   id?: T;
   blockName?: T;
@@ -764,22 +854,9 @@ export interface Partners2PropsSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "partners_select".
+ * via the `definition` "partnersN_select".
  */
-export interface PartnersSelect<T extends boolean = true> {
-  partners?:
-    | T
-    | {
-        partners?: T | PartnersPropsSelect<T>;
-      };
-  updatedAt?: T;
-  createdAt?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "partners2_select".
- */
-export interface Partners2Select<T extends boolean = true> {
+export interface PartnersNSelect<T extends boolean = true> {
   label?: T;
   subtitle?: T;
   images?: T;
@@ -933,6 +1010,38 @@ export interface AgendaNSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "contacts_select".
+ */
+export interface ContactsSelect<T extends boolean = true> {
+  title?: T;
+  subheading?: T;
+  gmaps?: T;
+  cta?: T;
+  address?: T;
+  phones?:
+    | T
+    | {
+        phone?: T;
+        id?: T;
+      };
+  emails?:
+    | T
+    | {
+        email?: T;
+        id?: T;
+      };
+  socials?:
+    | T
+    | {
+        platform?: T;
+        url?: T;
+        id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-kv_select".
  */
 export interface PayloadKvSelect<T extends boolean = true> {
@@ -979,7 +1088,6 @@ export interface Auth {
   [k: string]: unknown;
 }
 
-
-declare module 'payload' {
+declare module "payload" {
   export interface GeneratedTypes extends Config {}
 }

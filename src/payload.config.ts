@@ -12,16 +12,17 @@ import { nodemailerAdapter } from "@payloadcms/email-nodemailer";
 import { Attendees } from "./payload/collections/Attendees";
 import { Events } from "./payload/collections/Events";
 import { MarketingSectionsCollection } from "./payload/deprecated/Marketing-collection_old";
-import { PartnersCollection } from "./payload/deprecated/partners_old";
-import { Partners2Collection } from "./payload/collections/partners2";
+import { PartnersNCollection } from "./payload/collections/partnersN";
 import { Tickets } from "./payload/collections/tickets-collection";
 import { Gallery7Collection } from "./payload/collections/gallery-7";
-import { Testimonial25Collection } from "./payload/collections/TODOturnBlockIntoCollection-testimonial-25";
+import { Testimonial25Collection } from "./payload/collections/testimonial25-collection";
 import { StatisticsCollection } from "./payload/collections/statistics";
 import { FaqLeftRightCollection } from "./payload/collections/faq-left-right";
 import { LecturersCollection } from "./payload/collections/lecturers";
 import { AgendaCollection } from "./payload/collections/agenda";
 import { getServerSideURL } from "./lib/utils/getURL";
+import { Contacts } from "./payload/collections/contacts-collection";
+import { AboutPage } from "./payload/pages/about-page-collection";
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
@@ -54,13 +55,13 @@ export default buildConfig({
   },
   //Pages, Homepage, AboutPage, ConfPage,
   collections: [
+    AboutPage,
     Users,
     Media,
     Attendees,
     Events,
     MarketingSectionsCollection,
-    PartnersCollection,
-    Partners2Collection,
+    PartnersNCollection,
     Tickets,
     Gallery7Collection,
     Testimonial25Collection,
@@ -68,6 +69,7 @@ export default buildConfig({
     FaqLeftRightCollection,
     LecturersCollection,
     AgendaCollection,
+    Contacts,
   ],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || "",
@@ -82,4 +84,8 @@ export default buildConfig({
   plugins: [
     // storage-adapter-placeholder
   ],
+  defaultDepth: 999,
+  // indexSortableFields
+  // kv
+  // telemetry: true
 });

@@ -28,7 +28,7 @@ export const Gallery7Collection: CollectionConfig = {
       type: "upload",
       relationTo: "media",
       name: "images",
-      label: "Изображения",
+      label: "Снимки от събитието",
       hasMany: true,
       required: true,
     },

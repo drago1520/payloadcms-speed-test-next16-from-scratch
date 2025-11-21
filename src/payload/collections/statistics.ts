@@ -3,6 +3,9 @@ import { StatisticBlock } from "./TODO-turnBlockIntoCollection-statistic-block";
 
 export const StatisticsCollection: CollectionConfig = {
   slug: "statisticsN",
+  typescript: {
+    interface: "StatisticsProps",
+  },
   labels: {
     singular: "Статистика",
     plural: "Статистики",
